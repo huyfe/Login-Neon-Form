@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form Neon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- <h1>Follow the curosr | Javascript</h1> -->
+
+    <form class="neonform" action="#">
+        <h2 class="neonform__caption">log in</h2>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" class="form-control" id="email" placeholder="Type your email" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Type your password">
+        </div>
+        <div class="form-group">
+            <input type="checkbox" id="remember">
+            <label for="remember">Remember me</label>
+        </div>
+        <button id="login" class="btn btn-neon">log in</button>
+        <div class="form-group">
+            <div class="social-list">
+                <i style="font-size:48px; color:#3b5998" class="fab fa-facebook"></i>
+                <i style="font-size:48px; color: #00acee" class="fab fa-twitter"></i>
+                <i style="font-size:48px; color: #de5246" class="fab fa-google"></i>
+            </div>
+        </div>
+        <div id="cursor"></div>
+        <div id="point"></div>
+    </form>
+
+    <script type="text/javascript">
+        var cursor = document.getElementById("cursor"); // Truy cập đến thẻ con trỏ ảo(vòng tròn)
+        var point = document.getElementById("point"); // Truy cập đến thẻ con trỏ ảo (chấm tròn)
+        document.addEventListener("mousemove", function(e) { // Bắt sự kiện con trỏ thật di chuyển
+            // Lấy vị trí con trỏ thật hiện tại
+            var x = e.clientX;
+            var y = e.clientY;
+
+            // Gán vị trí của con trỏ thật cho thuộc tính top left của con trỏ ảo
+            // Lúc này con trỏ ảo sẽ di chuyển theo con trỏ thật
+            cursor.style.left = x + "px";
+            cursor.style.top = y + "px";
+
+            point.style.left = x + "px";
+            point.style.top = y + "px";
+        })
+
+        // Validate form
+        var login = document.getElementById("login"); // Truy cập đến button submit thông qua id="login"
+        login.addEventListener("click", function() {
+            event.preventDefault(); // không cho gửi form khi nhấn vào button submit.
+
+            // Lấy giá trị của email và password gán vào 2 biến email và password
+            var form = document.querySelector(".neonform");
+            var email = form.email;
+            var password = form.password;
+            if (email.value == "") { // Nếu email chưa nhập (== "") 
+                email.classList.add("bounce"); // Thêm class đã định nghĩa sẵn có animation di chuyển qua lại
+
+                function removeClass() { // Hàm xóa class vừa thêm
+                    email.classList.remove("bounce");
+                }
+                setTimeout(removeClass, 1000);
+            } else if (password.value == "") {
+                password.classList.add("bounce");
+
+                function removeClass() {
+                    password.classList.remove("bounce");
+                }
+                setTimeout(removeClass, 1000);
+            } else { // Ngược lại email và password đã đc nhập thì hiện ta cảm ơn
+                swal("Log in succesfully!", "Cảm ơn bạn đã xem video!", "success");
+            }
+
+        })
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://kit.fontawesome.com/5d4f973436.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
