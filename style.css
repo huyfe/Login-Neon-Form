@@ -120,6 +120,7 @@ body {
     border: none;
     border-radius: 30px;
     box-shadow: 0 0 30px blue;
+    filter: brightness(70%);
     transition: .3s;
 }
 
@@ -128,6 +129,7 @@ body {
     background-color: rgb(255, 54, 88);
     box-shadow: 0 0 30px rgb(255, 54, 88);
     cursor: none;
+    filter: brightness(70%);
 }
 
 .btn:focus {
